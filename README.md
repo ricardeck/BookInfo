@@ -1,3 +1,8 @@
+# Modificado rota para Bill:
+# kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-Bill-v2.yaml
+
+
+
 # Istio
 
 [![CircleCI](https://circleci.com/gh/istio/istio.svg?style=shield)](https://circleci.com/gh/istio/istio)
