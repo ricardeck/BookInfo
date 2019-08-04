@@ -8,7 +8,7 @@ spec:
   params:
     quotas:
     - name: requestcountquota.instance.istio-system
-      maxAmount: 500
+      maxAmount: 1
       validDuration: 1s
       # The first matching override is applied.
       # A requestcount instance is checked against override dimensions.
@@ -24,7 +24,7 @@ spec:
       - dimensions:
           destination: productpage
           source: "10.28.11.20"
-        maxAmount: 500
+        maxAmount: 1
         validDuration: 1s
       # The following override applies to 'productpage' regardless
       # of the source.

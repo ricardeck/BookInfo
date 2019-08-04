@@ -1,13 +1,32 @@
 # Modificado rota para Bill:
 kubectl apply -f samples/bookinfo/networking/virtual-service-reviews-Bill-v2.yaml
-#Monitoriamento
-kubectl -n istio-system get svc prometheus
-kubectl -n istio-system get svc grafana
-kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath='{.items[0].metadata.name}') 3000:3000 &
-http://localhost:3000/dashboard/db/istio-mesh-dashboard
-http://localhost:3000/dashboard/db/istio-service-dashboard
-http://localhost:3000/dashboard/db/istio-workload-dashboard
 
+#Monitoriamento
+- kubectl -n istio-system get svc prometheus
+- kubectl -n istio-system get svc grafana
+- kubectl -n istio-system port-forward $(kubectl -n istio-system get pod -l app=grafana -o jsonpath='{.items[0].metadata.name}') 3000:3000 &
+- http://localhost:3000/dashboard/db/istio-mesh-dashboard
+- http://localhost:3000/dashboard/db/istio-service-dashboard
+- http://localhost:3000/dashboard/db/istio-workload-dashboard
+
+#Log
+- Gravar
+- export details=$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})
+- export productpage=$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})
+- export ratings=$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})
+- export reviews=$(kubectl get pod -l app=sleep -o jsonpath={.items..metadata.name})
+- Ler
+- kubectl logs -l app=details -c istio-proxy
+- kubectl logs -l app=productpage -c istio-proxy
+- kubectl logs -l app=ratings -c istio-proxy
+- kubectl logs -l app=reviews -c istio-proxy
+
+#Limitando tráfego *
+- kubectl apply -f samples/bookinfo/policy/mixer-rule-productpage-ratelimit.yaml
+
+
+# Comandos
+- Arquivo comandos
 
 
 # Istio
